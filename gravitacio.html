@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gravitációs szimuláció</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="galaxis.js" defer></script>
+    <script src="vektor.js" defer></script>
+    <script src="egitest.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Gravitációs szimuláció</h1>
+
+      <svg width="96vw" height="80vh" id="vaszon"></svg>
+
+      
+      <h2 id="winlose">stopped</h2>
+      
+      <p><span id="score">0</span></p>
+    </div>
+    
+    <div id="floater">
+      <p>Score <span id="finalscore">0</span></p>    
+      <p>High score <span id="highScore">0</span></p>      
+
+      
+      <div id="dropdown">
+        <button id="dropbtn">Easy</button>
+        <div id="list">
+          <button type="button" id="easy">Easy</button>
+          <button type="button" id="medium">Medium</button>
+          <button type="button" id="hard">Hard</button>
+        </div>
+      </div>
+      
+      <button type="button" id="startbtn">START</button>
+    </div>
+
+  </body>
+</html>
