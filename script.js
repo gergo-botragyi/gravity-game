@@ -20,8 +20,12 @@ function szimulacios_lepes(){
     score.innerHTML = counter;
     for (const egitest of galaxis.egitestei) {
         egitest.mozogj();       
-        if(egitest.nev == "Nap" && (egitest.p.y < 0 || egitest.p.y>container.height || egitest.p.x < 0 || egitest.p.x > container.width)){
-            animationStop();            
+        if(egitest.p.y < 0 || egitest.p.y>container.height || egitest.p.x < 0 || egitest.p.x > container.width){
+            egitest.torol();
+            if(egitest.nev == "Nap")
+            {
+                animationStop();
+            }
         }
     }
 }
