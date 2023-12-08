@@ -2,7 +2,7 @@ const container = vaszon.getBoundingClientRect();
 let counter;
 let hs = 0;
 let dif = "Easy";
-let directions = [-1.5,1.5];
+let directions = [-1,1];
 
 // SZIMULÁCIÓHOZ HASZNÁLT VÁLTOZÓK DEKLARÁCIÓJA
 
