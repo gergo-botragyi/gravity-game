@@ -2,6 +2,7 @@ const container = vaszon.getBoundingClientRect();
 let counter;
 let hs = 0;
 let dif = "Easy";
+let directions = [-1.5,1.5];
 
 // SZIMULÁCIÓHOZ HASZNÁLT VÁLTOZÓK DEKLARÁCIÓJA
 
@@ -9,7 +10,9 @@ let galaxis = new Galaxis("Kistejút")
 let napocska;
 
 function inicializalas(){
-    napocska = new Egitest("Nap", 100, new Vektor(container.width/2, container.height/2), new Vektor(1, 1), "#FF0000", "#000000", galaxis);
+    let xdir = directions[Math.floor(Math.random()*directions.length)];
+    let ydir = directions[Math.floor(Math.random()*directions.length)];
+    napocska = new Egitest("Nap", 100, new Vektor(container.width/2, container.height/2), new Vektor(xdir, ydir), "#FF0000", "#000000", galaxis);
     vaszon.appendChild(napocska.svgobject);
 }
 
@@ -45,8 +48,10 @@ function update() {
     }
 }
 
+help.addEventListener("click", ()=>{window.alert("A játék célja, hogy a piros bolygót a zöld körvonallal jelölt területen belül minél tovább kell bent tartani más bolygók gravitációja segítségével!");})
+
 startbtn.addEventListener("click", start);
-dropbtn.addEventListener("click", ()=>{list.style.display = "block"})
+dropbtn.addEventListener("click", ()=>{list.style.display = "flex"; list.style.flexDirection = "row";})
 easy.addEventListener("click", difficulty);
 easy.diff = "Easy"
 medium.addEventListener("click", difficulty);
@@ -63,7 +68,8 @@ function difficulty(evt){
 function start(){
     if(!running){
         floater.style.display = "none";
-        floater.style.zIndex = "-100"; 
+        floater.style.zIndex = "-100";
+        vaszon.style.pointerEvents = "auto";        
         inicializalas();
         animationStart()
     }
@@ -72,8 +78,7 @@ function start(){
 function animationStart() {
     if (!running) {
         globalID = requestAnimationFrame(update);
-        running = true;
-        winlose.innerHTML = "running";        
+        running = true;      
         counter = 0;        
     }
 }
@@ -81,14 +86,14 @@ function animationStart() {
 function animationStop() {
     if (running) {
         cancelAnimationFrame(globalID);
-        winlose.innerHTML = "stopped";
         running = false;
         deleteEverything();
         if(hs<counter){hs=counter; highScore.innerHTML = hs}
         finalscore.innerHTML = counter;
         counter = 0;
         floater.style.display = "flex"
-        floater.style.zIndex = "100";         
+        floater.style.zIndex = "100";
+        vaszon.style.pointerEvents = "none";         
     }
 }
 
@@ -116,7 +121,7 @@ function bolygo_letevese(evt) {
             tomeg="5";
             break;
     }
-    let bolygocska = new Egitest("Hold"+galaxis.egitestei.length, parseFloat(tomeg), p, v, "#000000", "#000000", galaxis);
+    let bolygocska = new Egitest("Hold"+galaxis.egitestei.length, parseFloat(tomeg), p, v, "#5f5f5f", "#000000", galaxis);
     vaszon.appendChild(bolygocska.svgobject);
 }
     
